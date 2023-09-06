@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Service
 public class PessoaService {
     @Autowired
@@ -27,6 +29,11 @@ public class PessoaService {
 
         return modelMapper.modelMapper().map(repository.save(modelMapper.modelMapper().map(dto, PessoaEntity.class)), PessoaDTO.class);
     }*/
+
+    @Transactional
+    public List<PessoaEntity> getList() {
+        return repository.findAll();
+    }
 
     @Transactional
     public PessoaEntity create(@RequestBody PessoaEntity entity) {
